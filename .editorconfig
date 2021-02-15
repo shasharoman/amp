@@ -4,5 +4,10 @@
     "indent_size": 4,
     "trim_trailing_whitespace": true,
     "space_after_anon_function": true,
-    "brace_style": "end-expand"
+    "brace_style": "collapse",
+    "preserve_newlines": true,
+    "max_preserve_newlines": "2",
+    "end_with_newline": true,
+    "e4x": false,
+    "indent_empty_lines": false
 }

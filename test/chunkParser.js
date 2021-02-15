@@ -54,4 +54,18 @@ describe('chunk parser', () => {
         });
         chunkParser.write(parser.encode(...msg));
     });
+
+    it('encode & decode, large msg', () => {
+        let parser = new Parser({
+            mode: 'buffer'
+        });
+        let chunkParser = new ChunkParser(parser);
+        let msg = Buffer.allocUnsafe(1024 * 1024 * 16);
+
+        chunkParser.on('msg', m => {
+            expect(m.length).to.be.equal(msg.length);
+        });
+
+        chunkParser.write(parser.encode(msg));
+    });
 });

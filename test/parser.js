@@ -65,4 +65,18 @@ describe('parser', () => {
         expect(msg2).to.deep.equal(msg[1]);
         expect(msg3).to.deep.equal(msg[2]);
     });
+
+    it('encode & decode, large msg', () => {
+        let parser = new Parser({
+            mode: 'buffer'
+        });
+        let msg = Buffer.allocUnsafe(1024 * 1024 * 16);
+
+        let encode = parser.encode(msg, msg);
+        expect(encode).to.be.an.instanceof(Buffer);
+
+        let [msg1, msg2] = parser.decode(encode);
+        expect(msg1.length).to.be.equal(msg.length);
+        expect(msg2.length).to.be.equal(msg.length);
+    });
 });
